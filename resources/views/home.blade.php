@@ -3,7 +3,7 @@
 <div id="content">
     <!--breadcrumbs-->
     <div id="content-header">
-        <div id="breadcrumb"> <a href="{{url('admin')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
+        <div id="breadcrumb"> <a href="{{url('home')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
     </div>
     <!--End-breadcrumbs-->
     <!--Action boxes-->
@@ -16,7 +16,7 @@
         @endif
         <div class="quick-actions_homepage">
             <ul class="quick-actions">
-                <li class="bg_lb"> <a href="{{url('admin/dashboard')}}"> <i class="icon-dashboard"></i> My Dashboard </a> </li>
+                <li class="bg_lb"> <a href="{{url('home')}}"> <i class="icon-dashboard"></i> My Dashboard </a> </li>
                 <li class="bg_lo"> <a href="widgets.html"> <i class="icon icon-th-list"></i><span class="label label-success">101</span> Sessions </a> </li>
                 <li class="bg_ls"> <a href="widgets.html"> <i class="icon-icon-invoice"></i><span class="label label-success">101</span> Invoices </a> </li>
                 <li class="bg_lg"> <a href="calendar.html"> <i class="icon-calendar"></i> Calendar</a> </li>

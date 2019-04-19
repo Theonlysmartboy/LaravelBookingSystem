@@ -21,6 +21,8 @@ Route::match(['get', 'post'], '/admin/update-pwd', 'AdminController@updatePasswo
 Route::get('/logout', 'AdminController@logout');
 Route::get('/admin/dashboard', 'AdminController@dashboard');
 Route::get('/admin/check-pwd', 'AdminController@chkPassword');
+//Client's Logout route
+Route::get('client/logout', 'BookingController@logout');
 //Client's Booking routes
 Route::match(['get', 'post'], '/client/add_booking',['middleware' => 'auth', 'uses' => 'BookingController@book']);
 Route::get('/client/view_bookings',['middleware' => 'auth', 'uses' => 'BookingController@viewBookings']);

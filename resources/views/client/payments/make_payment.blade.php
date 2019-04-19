@@ -2,8 +2,8 @@
 @section('content')
 <div id="content">
     <div id="content-header">
-        <div id="breadcrumb"> <a href="{{url('admin/dashboard')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> 
-            <a href="#">Bookings</a> <a href="#" class="current">Book</a> 
+        <div id="breadcrumb"> <a href="{{url('home')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> 
+            <a href="#">Make Payments</a> <a href="#" class="current">Book</a> 
         </div>
         <h1>Book Session</h1>
     </div>

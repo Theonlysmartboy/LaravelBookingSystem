@@ -94,5 +94,9 @@ class BookingController extends Controller {
             return redirect()->back()->with('flash_message_success', 'Product Deleted Successfully');
         }
     }
+    public function logout() {
+        Session::flush();
+        return redirect('/login')->with('flash_message_success', 'Logged out Successfully');
+    }
 
 }
