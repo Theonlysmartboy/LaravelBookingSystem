@@ -4,7 +4,7 @@
     <div id="content-header">
         <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Addons pages</a> <a href="#" class="current">invoice</a> 
         </div>
-        <h1>Invoice</h1>
+        <h1>My Invoices</h1>
     </div>
     @foreach($products as $product)
     @foreach($charges as $charge)
@@ -13,7 +13,7 @@
             <div class="span12">
                 <div class="widget-box">
                     <div class="widget-title"> <span class="icon"> <i class="icon-briefcase"></i> </span>
-                        <h5 >Company Name</h5>
+                        <h5 >Invoice</h5>
                     </div>
                     <div class="widget-content">
                         <div class="row-fluid">
@@ -44,7 +44,7 @@
                                         <tr>
                                         <tr>
                                             <td class="width30">Invoice ID:</td>
-                                            <td class="width70"><strong>TD-6546</strong></td>
+                                            <td class="width70"><strong>{{ $product->invoice }}</strong></td>
                                         </tr>
                                         <tr>
                                             <td>Issue Date:</td>
@@ -92,18 +92,18 @@
                                     <tbody>
                                         <tr>
                                             <td class="msg-invoice" width="75%"><h4>Payment method: </h4>
-                                                <a href="#" class="tip-bottom" title="Wire Transfer">Wire transfer</a> |  <a href="#" class="tip-bottom" title="Bank account">Bank account #</a> |  <a href="#" class="tip-bottom" title="SWIFT code">SWIFT code </a>|  <a href="#" class="tip-bottom" title="IBAN Billing address">IBAN Billing address </a></td>
+                                                <a href="#" class="tip-bottom" title="Wire Transfer">Cash in hand</a> |  <a href="#" class="tip-bottom" title="Bank account">Bank account #</a> |  <a href="#" class="tip-bottom" title="SWIFT code">Mpesa </a>|  <a href="#" class="tip-bottom" title="IBAN Billing address">Cheque </a></td>
                                             <td class="right"><strong>Subtotal</strong> <br>
                                                 <strong>Tax ( {{ $charge->tax*100 }}%)</strong> <br>
                                                 <strong>Discount</strong></td>
                                             <td class="right"><strong>Ksh &nbsp;{{ $charge->amount }} <br>
                                                      Ksh &nbsp;{{ $charge->amount*$charge->tax }}<br>
-                                                    $50</strong></td>
+                                                    ksh50</strong></td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <div class="pull-right">
-                                    <h4><span>Amount Due:</span>Ksh &nbsp;{{ $product->service_fee }}</h4>
+                                    <h4><span>Amount Due:</span>Ksh &nbsp;{{ $product->service_fee - 50 }}</h4>
                                     <br>
                                    @if($product->service_status== 'Unpaid')
                                     <a class="btn btn-danger btn-large pull-right" href="">Pay Invoice</a> </div>

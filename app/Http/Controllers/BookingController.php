@@ -103,7 +103,7 @@ class BookingController extends Controller {
         $allProducts = Booking::get()->where('client', Auth::user()->name);
         $products = json_decode(json_encode($allProducts));
         foreach ($products as $key => $val) {
-            $service_name = Service::where(['id' => $val->service])->first();
+            $service_name = Service::where(['id' => $val->service])->first;
             $service_fee = Charge::where(['id' => $val->charge])->first();
             $service_status = Status::where(['id' => $val->status])->first();
             $products[$key]->service_name = $service_name->name;
