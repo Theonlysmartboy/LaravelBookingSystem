@@ -27,19 +27,21 @@
                         <h5>Make Payment</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <p class="text-black text-center">Currently payments can only be made through:</p>
-                        <ol class="text-black text-center">
+                        <h2 class="text-black text-center">Currently payments can only be made through:</h2>
+                        <ol class="text-black">
                             @foreach($settings as $setting)
-                            @if($settings->bank == 'Mpesa')
-                            <li class="text-black text-center">{{ $setting->bank }}<br>
-                                Paybill No: {{ $setting->account_no }} <br>
-                                Account no: {{ $setting->branch }} <br></li>
+                            @if($setting->bank == 'Mpesa')
+                            <li class="text-black"><u> <b>{{ $setting->bank }}</b></u><br>
+                                Paybill No: <u> <b>{{ $setting->account_no }}</b></u> <br>
+                                Account no: <u> <b>{{ $setting->branch }}</b></u> <br></li>
+                            @else
+                            <li class="text-black">our <u> <b>{{ $setting->bank }}</b></u> bank account<br>
+                                Account No: <u> <b>{{ $setting->account_no }}</b></u> <br>
+                                Account Name: <u> <b>{{ $setting->name }}</b></u> <br>
+                                Branch: <u> <b>{{ $setting->branch }}</b></u> <br></li>
                             @endif
-                            <li class="text-black text-center">our {{ $setting->bank }} bank account<br>
-                                Account No: {{ $setting->account_no }} <br>
-                                Account Name: {{ $setting->name }} <br>
-                                Branch: {{ $setting->branch }} <br></li>
                             @endforeach
+                            <li>Cash in hand at our offices or during the meeting</li>
                         </ol>
                     </div>
                 </div>
