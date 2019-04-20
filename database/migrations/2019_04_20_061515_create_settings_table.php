@@ -16,8 +16,10 @@ class CreateSettingsTable extends Migration {
             $table->bigIncrements('id');
             $table->string('bank');
             $table->string('branch');
+            $table->string('name');
             $table->string('account_no')->unique();
             $table->string('paybill_no')->nullable();
+            $table->tinyinteger('is_current');
             $table->timestamps();
         });
     }

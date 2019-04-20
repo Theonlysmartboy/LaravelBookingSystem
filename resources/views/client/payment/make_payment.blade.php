@@ -27,7 +27,20 @@
                         <h5>Make Payment</h5>
                     </div>
                     <div class="widget-content nopadding">
-                    
+                        <p class="text-black text-center">Currently payments can only be made through:</p>
+                        <ol class="text-black text-center">
+                            @foreach($settings as $setting)
+                            @if($settings->bank == 'Mpesa')
+                            <li class="text-black text-center">{{ $setting->bank }}<br>
+                                Paybill No: {{ $setting->account_no }} <br>
+                                Account no: {{ $setting->branch }} <br></li>
+                            @endif
+                            <li class="text-black text-center">our {{ $setting->bank }} bank account<br>
+                                Account No: {{ $setting->account_no }} <br>
+                                Account Name: {{ $setting->name }} <br>
+                                Branch: {{ $setting->branch }} <br></li>
+                            @endforeach
+                        </ol>
                     </div>
                 </div>
             </div>

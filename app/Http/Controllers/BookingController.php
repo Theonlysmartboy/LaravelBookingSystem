@@ -9,6 +9,7 @@ use App\Charge;
 use App\Service;
 use App\Booking;
 use App\Status;
+use App\Setting;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Input;
 
@@ -70,10 +71,15 @@ class BookingController extends Controller {
         if ($request->isMethod('post')) {
             
         } else {
-            return view('client.payment.make_payment');
+            $settings=Setting::where(['is_current' => 1])->get();
+            dd($settings);
+            return view('client.payment.make_payment')->with(compact('settings'));;
         }
     }
 
+    public function viewPaymets(){
+        
+    }
     public function deleteBooking($id = null) {
         if (!empty($id)) {
             $productImage = Product::where(['id' => $id])->first();
