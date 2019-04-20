@@ -72,7 +72,7 @@ class BookingController extends Controller {
             
         } else {
             $settings=Setting::where(['is_current' => 1])->get();
-            dd($settings);
+            //dd($settings);
             return view('client.payment.make_payment')->with(compact('settings'));;
         }
     }
