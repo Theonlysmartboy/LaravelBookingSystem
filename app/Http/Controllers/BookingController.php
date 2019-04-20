@@ -67,8 +67,11 @@ class BookingController extends Controller {
     }
 
     public function pay(Request $request, $id = null) {
-        //check if user is authenticated
-        $this->middleware('auth');
+        if ($request->isMethod('post')) {
+            
+        } else {
+            return view('client.payment.make_payment');
+        }
     }
 
     public function deleteBooking($id = null) {
@@ -94,6 +97,7 @@ class BookingController extends Controller {
             return redirect()->back()->with('flash_message_success', 'Product Deleted Successfully');
         }
     }
+
     public function logout() {
         Session::flush();
         return redirect('/login')->with('flash_message_success', 'Logged out Successfully');
