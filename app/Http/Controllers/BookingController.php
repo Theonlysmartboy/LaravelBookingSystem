@@ -71,37 +71,29 @@ class BookingController extends Controller {
         if ($request->isMethod('post')) {
             
         } else {
-            $settings=Setting::where(['is_current' => 1])->get();
+            $settings = Setting::where(['is_current' => 1])->get();
             //dd($settings);
-            return view('client.payment.make_payment')->with(compact('settings'));;
+            return view('client.payment.make_payment')->with(compact('settings'));
+            ;
         }
     }
 
-    public function viewPaymets(){
+    public function viewPaymets() {
         
     }
-    public function deleteBooking($id = null) {
-        if (!empty($id)) {
-            $productImage = Product::where(['id' => $id])->first();
-//Get product image paths
-            $large_image_path = 'images/frontend_images/products/large/';
-            $medium_image_path = 'images/frontend_images/products/medium/';
-            $small_image_path = 'images/frontend_images/products/small/';
-//Delete the large image if exists
-            if (file_exists($large_image_path . $productImage->image)) {
-                unlink($large_image_path . $productImage->image);
-            }
-//Delete the medium image if exists
-            if (file_exists($medium_image_path . $productImage->image)) {
-                unlink($medium_image_path . $productImage->image);
-            }
-//Delete the small image if exists
-            if (file_exists($small_image_path . $productImage->image)) {
-                unlink($small_image_path . $productImage->image);
-            }
-            Product::where(['id' => $id])->delete();
-            return redirect()->back()->with('flash_message_success', 'Product Deleted Successfully');
+
+    public function viewInvoices() {
+        $allProducts = Booking::get()->where('client', Auth::user()->name);
+        $products = json_decode(json_encode($allProducts));
+        foreach ($products as $key => $val) {
+            $service_name = Service::where(['id' => $val->service])->first();
+            $service_fee = Charge::where(['id' => $val->charge])->first();
+            $service_status = Status::where(['id' => $val->status])->first();
+            $products[$key]->service_name = $service_name->name;
+            $products[$key]->service_fee = $service_fee->total;
+            $products[$key]->service_status = $service_status->name;
         }
+        return view('client.payment.invoices')->with(compact('products'));
     }
 
     public function logout() {

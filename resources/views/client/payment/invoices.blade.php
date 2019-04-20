@@ -3,9 +3,9 @@
 <div id="content">
     <div id="content-header">
         <div id="breadcrumb"> <a href="{{url('home')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> 
-            <a href="#">Sessions</a> <a href="#" class="current">View Sessions</a> 
+            <a href="#">Payments</a> <a href="#" class="current">Invoices</a> 
         </div>
-        <h1>View Sessions</h1>
+        <h1>Pay</h1>
     </div>
     <div class="container-fluid"><hr>
         @if(Session::has('flash_message_error'))
@@ -20,7 +20,7 @@
             <strong>{!!session('flash_message_success')!!}</strong>
         </div>
         @endif
-        <div class="row-fluid">
+           <div class="row-fluid">
             <div class="span12">
                 <div class="widget-box">
                     <div class="widget-title"> <span class="icon"><i class="icon-th"></i></span>
@@ -56,7 +56,7 @@
                                         @if($product->service_status== 'Unpaid')
                                         <a href="{{url('client/make_payment/'.$product->id)}}" class="btn btn-warning btn-mini">Make Payment <i class="icon icon-edit"></i></a> | 
                                         @endif
-                                        <a href="{{ route('pdfview',['download'=>'pdf']) }}" class="btn btn-danger btn-mini deleteProduct">Delete <i class="icon icon-trash"></i></a></td>
+                                        <a rel="{{$product->id}}" rel1="delete_product" href="javascript:" class="btn btn-danger btn-mini deleteProduct">Delete <i class="icon icon-trash"></i></a></td>
                                 </tr>
                             <div id="productModal{{ $product->id }}" class="modal hide">
                                 <div class="modal-header bg-blue-dark">

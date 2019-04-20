@@ -31,6 +31,7 @@ Route::match(['get', 'post'], '/client/delete_booking/{id}',['middleware' => 'au
 //Client's payment routes
 Route::match(['get', 'post'], '/client/make_payment/{id}',['middleware' => 'auth', 'uses' => 'BookingController@pay']);
 Route::get('/client/view_payments',['middleware' => 'auth', 'uses' => 'BookingController@viewPayments']);
+Route::get('/client/invoices',['middleware' => 'auth', 'uses' => 'BookingController@viewInvoices']);
 //Admin's Booking routes
 Route::match(['get', 'post'], '/admin/booking', 'BookingController@book');
 Route::get('/admin/view_bookings', 'BookingController@viewBookings');

@@ -10,7 +10,7 @@
         </li>
         <li class="submenu"> <a href="#"><i class="icon icon-th-list"></i> <span>Payments</span></a>
             <ul>
-                <li><a href="{{url('admin/view_products')}}"><i class="icon icon-th-list"></i> <span>Invoices</span></a></li>
+                <li><a href="{{url('client/invoices')}}"><i class="icon icon-th-list"></i> <span>Invoices</span></a></li>
             </ul>
         </li>
     </ul>
