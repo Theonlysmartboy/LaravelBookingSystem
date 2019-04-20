@@ -56,7 +56,7 @@
                                         @if($product->service_status== 'Unpaid')
                                         <a href="{{url('client/make_payment/'.$product->id)}}" class="btn btn-warning btn-mini">Make Payment <i class="icon icon-edit"></i></a> | 
                                         @endif
-                                        <a href="{{ route('pdfview',['download'=>'pdf']) }}" class="btn btn-danger btn-mini deleteProduct">Delete <i class="icon icon-trash"></i></a></td>
+                                        <a href="{{ route('pdfview',['download'=>'pdf']) }}" class="btn btn-danger btn-mini deleteProduct">View Invoice <i class="icon icon-trash"></i></a></td>
                                 </tr>
                             <div id="productModal{{ $product->id }}" class="modal hide">
                                 <div class="modal-header bg-blue-dark">

@@ -38,5 +38,5 @@ Route::get('/admin/view_bookings', 'BookingController@viewBookings');
 Route::match(['get', 'post'], '/admin/edit_booking/{id}', 'BookingController@editCategory');
 Route::match(['get', 'post'], '/admin/delete_booking/{id}', 'BookingController@deleteCategory');
 Auth::routes();
-
+Route::get('pdfview',array('as'=>'pdfview','uses'=>'BookingController@pdfview'));
 Route::get('/home', 'HomeController@index')->name('home');
