@@ -7,7 +7,7 @@
         <h1>My Invoices</h1>
     </div>
     @foreach($products as $product)
-    @foreach($charges as $charge)
+
     <div class="container-fluid"><hr>
         <div class="row-fluid">
             <div class="span12">
@@ -80,11 +80,12 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>{{ $product->service_name }}</td>
+                                            <td>{{ $product->s_name }}</td>
                                             <td> </td>
                                             <td class="right">1</td>
-                                            <td class="right">Ksh &nbsp;{{ $charge->amount }}</td>
-                                            <td class="right"><strong>Ksh &nbsp;{{ $charge->amount }}</strong></td>
+                                            <td class="right">Ksh &nbsp;{{ $product->amount }}</td>
+
+                                            <td class="right"><strong>Ksh &nbsp;{{ $product->amount }}</strong></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -94,24 +95,23 @@
                                             <td class="msg-invoice" width="75%"><h4>Payment method: </h4>
                                                 <a href="#" class="tip-bottom" title="Wire Transfer">Cash in hand</a> |  <a href="#" class="tip-bottom" title="Bank account">Bank account #</a> |  <a href="#" class="tip-bottom" title="SWIFT code">Mpesa </a>|  <a href="#" class="tip-bottom" title="IBAN Billing address">Cheque </a></td>
                                             <td class="right"><strong>Subtotal</strong> <br>
-                                                <strong>Tax ( {{ $charge->tax*100 }}%)</strong> <br>
+                                                <strong>Tax ( {{ $product->tax*100 }}%)</strong> <br>
                                                 <strong>Discount</strong></td>
-                                            <td class="right"><strong>Ksh &nbsp;{{ $charge->amount }} <br>
-                                                     Ksh &nbsp;{{ $charge->amount*$charge->tax }}<br>
-                                                    ksh50</strong></td>
+                                            <td class="right"><strong>Ksh &nbsp;{{ $product->amount }} <br>
+                                                    Ksh &nbsp;{{ $product->amount*$product->tax }}<br>
+                                                    ksh {{$product->discount}}</strong></td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <div class="pull-right">
-                                    <h4><span>Amount Due:</span>Ksh &nbsp;{{ $product->service_fee - 50 }}</h4>
+                                    <h4><span>Amount Due:</span>Ksh &nbsp;{{ $product->total - $product->discount }}</h4>
                                     <br>
-                                   @if($product->service_status== 'Unpaid')
+                                    @if($product->name== 'Unpaid')
                                     <a class="btn btn-danger btn-large pull-right" href="">Pay Invoice</a> </div>
-                            @else
-                             <a class="btn btn-success btn-large pull-right" href="">Paid</a> </div>
-                            
+                                @else
+                                <a class="btn btn-success btn-large pull-right" href="">Paid</a> </div>
+
                             @endif
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -119,6 +119,8 @@
         </div>
     </div>
     @endforeach
-    @endforeach
 </div>
+
+
+<!--/div-->
 @endsection
