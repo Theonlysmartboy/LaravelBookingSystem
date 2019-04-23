@@ -63,9 +63,6 @@ class BookingController extends Controller {
     public function viewBookings() {
 
         $allProducts = Booking::get()->where('client', Auth::user()->name);
-        //dd($allProducts);
-        //$allProducts = Booking::get()->where('client', Auth::user()->name);
-        // $products = json_decode(json_encode($allProducts));
         $products = $allProducts;
         foreach ($products as $key => $val) {
             $service_name = Service::where(['id' => $val->service])->first();
@@ -83,7 +80,6 @@ class BookingController extends Controller {
             
         } else {
             $settings = Setting::where(['is_current' => 1])->get();
-            //dd($settings);
             return view('client.payment.make_payment')->with(compact('settings'));
             ;
         }
@@ -101,7 +97,6 @@ class BookingController extends Controller {
                 ->select('bookings.*', 'services.s_name', 'services.description', 'statuses.name', 'charges.amount', 'charges.tax', 'charges.total')
                 ->get()
                 ->where('client', Auth::user()->name);
-        //dd($products);
         return view('client.payment.invoices')->with(compact('products'));
     }
 
