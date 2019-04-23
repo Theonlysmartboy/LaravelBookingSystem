@@ -11,6 +11,7 @@ use App\Booking;
 use App\Status;
 use App\Setting;
 use PDF;
+use DB;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Input;
 
@@ -36,6 +37,7 @@ class BookingController extends Controller {
             }
             $product->invoice = 'APP' . rand(0, 9999) . 'IN';
             $product->save();
+
             return redirect('/client/view_bookings')->with('flash_message_success', 'Product added Successfully');
         } else {
 //Services drop down start
@@ -53,16 +55,23 @@ class BookingController extends Controller {
         }
     }
 
+    public function viewAllBookings() {
+        
+    }
+
 //Function to dosplay the bookings
     public function viewBookings() {
 
         $allProducts = Booking::get()->where('client', Auth::user()->name);
-        $products = json_decode(json_encode($allProducts));
+        //dd($allProducts);
+        //$allProducts = Booking::get()->where('client', Auth::user()->name);
+        // $products = json_decode(json_encode($allProducts));
+        $products = $allProducts;
         foreach ($products as $key => $val) {
             $service_name = Service::where(['id' => $val->service])->first();
             $service_fee = Charge::where(['id' => $val->charge])->first();
             $service_status = Status::where(['id' => $val->status])->first();
-            $products[$key]->service_name = $service_name->name;
+            $products[$key]->service_name = $service_name->s_name;
             $products[$key]->service_fee = $service_fee->total;
             $products[$key]->service_status = $service_status->name;
         }
@@ -86,17 +95,14 @@ class BookingController extends Controller {
 
     public function viewInvoices() {
         $allProducts = Booking::get()->where('client', Auth::user()->name);
-        $products = json_decode(json_encode($allProducts));
-        foreach ($products as $key => $val) {
-            $service_name = Service::where(['id' => $val->service])->first();
-            $service_fee = Charge::where(['id' => $val->charge])->first();
-            $service_status = Status::where(['id' => $val->status])->first();
-            $products[$key]->service_name = $service_name->name;
-            $products[$key]->service_fee = $service_fee->total;
-            $products[$key]->service_status = $service_status->name;
-            $product_charge = Charge::where(['id' => $val->charge])->get();
-        }$charges = json_decode(json_encode($product_charge));
-        return view('client.payment.invoices')->with(compact('products', 'charges'));
+        $products = DB::table('bookings')
+                ->join('services', 'bookings.service', '=', 'services.id')
+                ->join('charges', 'bookings.charge', '=', 'charges.id')
+                ->join('statuses', 'bookings.status', '=', 'statuses.id')
+                ->select('bookings.*', 'services.s_name','services.description','statuses.name', 'charges.amount','charges.tax','charges.total')
+                ->get();
+        //dd($products);
+        return view('client.payment.invoices')->with(compact('products'));
     }
 
     public function pdfview(Request $request) {
