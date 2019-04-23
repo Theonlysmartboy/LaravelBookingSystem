@@ -94,13 +94,13 @@ class BookingController extends Controller {
     }
 
     public function viewInvoices() {
-        $allProducts = Booking::get()->where('client', Auth::user()->name);
         $products = DB::table('bookings')
                 ->join('services', 'bookings.service', '=', 'services.id')
                 ->join('charges', 'bookings.charge', '=', 'charges.id')
                 ->join('statuses', 'bookings.status', '=', 'statuses.id')
-                ->select('bookings.*', 'services.s_name','services.description','statuses.name', 'charges.amount','charges.tax','charges.total')
-                ->get();
+                ->select('bookings.*', 'services.s_name', 'services.description', 'statuses.name', 'charges.amount', 'charges.tax', 'charges.total')
+                ->get()
+                ->where('client', Auth::user()->name);
         //dd($products);
         return view('client.payment.invoices')->with(compact('products'));
     }
