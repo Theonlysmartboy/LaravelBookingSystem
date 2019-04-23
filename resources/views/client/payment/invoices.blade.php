@@ -107,7 +107,7 @@
                                     <h4><span>Amount Due:</span>Ksh &nbsp;{{ $product->total - $product->discount }}</h4>
                                     <br>
                                     @if($product->name== 'Unpaid')
-                                    <a class="btn btn-danger btn-large pull-right" href="">Pay Invoice</a> </div>
+                                    <a class="btn btn-danger btn-large pull-right" href="{{url('client/make_payment/'.$product->id)}}">Pay Invoice</a> </div>
                                 @else
                                 <a class="btn btn-success btn-large pull-right" href="">Paid</a> </div>
 
