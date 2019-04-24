@@ -17,10 +17,10 @@
         <div class="quick-actions_homepage">
             <ul class="quick-actions">
                 <li class="bg_lb"> <a href="{{url('admin/dashboard')}}"> <i class="icon-dashboard"></i>My Dashboard </a> </li>
-                <li class="bg_lg span3"> <a href="{{url('admin/clients')}}"> <i class="icon-signal"></i> <strong>101 Clients </strong></a> </li>
-                <li class="bg_ly"> <a href="{{url('admin/bookings')}}"> <i class="icon-inbox"></i><strong>101 Bookings</strong> </a> </li>
-                <li class="bg_lo"> <a href="{{url('admin/invoices')}}"> <i class="icon-th"></i> <strong>101 Invoices</strong></a> </li>
-                <li class="bg_ls"> <a href="{{url('admin/services')}}"> <i class="icon-fullscreen"></i> <strong>101 Services</strong></a> </li>
+                <li class="bg_lg span3"> <a href="{{url('admin/clients')}}"> <i class="icon-signal"></i> <strong>{{ $total_clients }} Clients </strong></a> </li>
+                <li class="bg_ly"> <a href="{{url('admin/bookings')}}"> <i class="icon-inbox"></i><strong>{{ $total_bookings }} Bookings</strong> </a> </li>
+                <li class="bg_lo"> <a href="{{url('admin/invoices')}}"> <i class="icon-th"></i> <strong>{{ $total_invoices }} Invoices</strong></a> </li>
+                <li class="bg_ls"> <a href="{{url('admin/services')}}"> <i class="icon-fullscreen"></i> <strong>{{ $total_services }} Services</strong></a> </li>
                   </ul>
         </div>
         <!--End-Action boxes-->    
@@ -37,10 +37,10 @@
                         </div>
                         <div class="span3">
                             <ul class="site-stats">
-                                <li class="bg_lh"><i class="icon-user"></i> <strong>2540</strong> <small>Total Clients</small></li>
-                                <li class="bg_lh"><i class="icon-plus"></i> <strong>120</strong> <small>New Clients </small></li>
-                                <li class="bg_lh"><i class="icon-tag"></i> <strong>9540</strong> <small>Total Bookings</small></li>
-                                <li class="bg_lh"><i class="icon-repeat"></i> <strong>10</strong> <small>Pending Bookings</small></li>
+                                <li class="bg_lh"><i class="icon-user"></i> <strong>{{ $total_clients }}</strong> <small>Total Clients</small></li>
+                                <li class="bg_lh"><i class="icon-plus"></i> <strong>{{$new_clients}} </strong> <small>New Clients </small></li>
+                                <li class="bg_lh"><i class="icon-tag"></i> <strong>{{ $total_bookings }} </strong> <small>Total Bookings</small></li>
+                                <li class="bg_lh"><i class="icon-repeat"></i> <strong>{{ $pending_bookings }} </strong> <small>Pending Bookings</small></li>
                             </ul>
                         </div>
                     </div>
