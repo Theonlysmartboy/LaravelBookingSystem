@@ -36,12 +36,12 @@ class AdminController extends Controller {
     public function dashboard() {
         if (Session::has('adminSession')) {
             $total_bookings = Booking::count();
-             $pending_bookings = Booking::where(['status'=>2])->count();
-             $total_clients= User::where(['role'=>0])->count();
-             $total_invoices= Invoice::count();
-             $total_services= Service::count();
-             $new_clients = User::where(['role'=>0])->count();
-            return view('admin.dashboard')->with(compact('total_bookings','pending_bookings', 'total_clients', 'total_invoices', 'total_services', 'new_clients'));
+            $pending_bookings = Booking::where(['status' => 2])->count();
+            $total_clients = User::where(['role' => 0])->count();
+            $total_invoices = Invoice::count();
+            $total_services = Service::count();
+            $new_clients = User::where(['role' => 0])->count();
+            return view('admin.dashboard')->with(compact('total_bookings', 'pending_bookings', 'total_clients', 'total_invoices', 'total_services', 'new_clients'));
         } else {
             return redirect('/admin')->with('flash_message_error', 'Access denied! Please Login first');
         }
