@@ -230,11 +230,11 @@ $(document).ready(function () {
                 });
     });
         //Function to delete Product
-    $(".deleteProduct").click(function () {
+    $(".deleteBooking").click(function () {
         var id = $(this).attr('rel');
         var deleteFunction = $(this).attr('rel1');
         swal({
-            title: "Are you sure You want to delete this Product?",
+            title: "Are you sure You want to delete this Booking?",
             text: "You won't be able to revert this!",
             type: "warning",
             showCancelButton: true,
