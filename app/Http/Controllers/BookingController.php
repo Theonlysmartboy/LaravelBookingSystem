@@ -122,6 +122,18 @@ class BookingController extends Controller {
         }
     }
 
+    public function deleteBooking($id = null) {
+        //Only authenticated users can make calls to this function
+        if (Session::has('adminSession')) {
+            if (!empty($id)) {
+                Booking::where(['id' => $id])->delete();
+                return redirect()->back()->with('flash_message_success', 'Deleted Successfully');
+            }
+        } else {
+            return redirect('/admin')->with('flash_message_error', 'Access denied! Please Login first');
+        }
+    }
+
     public function viewPaymets() {
         
     }
