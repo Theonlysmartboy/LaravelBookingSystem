@@ -27,6 +27,9 @@ Route::match(['get', 'post'], '/admin/accept_booking/{id}', ['middleware' => 'au
 Route::match(['get', 'post'], '/admin/reject_booking/{id}', ['middleware' => 'auth', 'uses' => 'BookingController@rejectBooking']);
 Route::match(['get', 'post'], '/admin/delete_booking/{id}', 'BookingController@deleteBooking');
 
+//Admin Client routes
+Route::get('/admin/clients', 'ClientController@viewClients');
+Route::match(['get', 'post'], '/admin/delete_client/{id}', 'ClientController@deleteClient');
 //Client's Logout route
 Route::get('client/logout', 'BookingController@logout');
 

@@ -21,7 +21,7 @@ class BookingController extends Controller {
         if ($request->isMethod('post')) {
             $data = $request->all();
             $product = new Booking;
-            $product->client = Auth::user()->name;
+            $product->client = Auth::user()->id;
             $product->service = $data['category_id'];
             $product->startdatetime = $data['startdate'];
             $product->enddatetime = $data['enddate'];
@@ -99,7 +99,7 @@ class BookingController extends Controller {
 
 //Function to dosplay the bookings
     public function viewBookings() {
-        $allProducts = Booking::get()->where('client', Auth::user()->name);
+        $allProducts = Booking::get()->where('client', Auth::user()->id);
         $products = $allProducts;
         foreach ($products as $key => $val) {
             $service_name = Service::where(['id' => $val->service])->first();
@@ -145,12 +145,12 @@ class BookingController extends Controller {
                 ->join('statuses', 'bookings.status', '=', 'statuses.id')
                 ->select('bookings.*', 'services.s_name', 'services.description', 'statuses.name', 'charges.amount', 'charges.tax', 'charges.total')
                 ->get()
-                ->where('client', Auth::user()->name);
+                ->where('client', Auth::user()->id);
         return view('client.payment.invoices')->with(compact('products'));
     }
 
     public function pdfview(Request $request) {
-        $allProducts = Booking::get()->where('client', Auth::user()->name);
+        $allProducts = Booking::get()->where('client', Auth::user()->id);
         $products = json_decode(json_encode($allProducts));
         foreach ($products as $key => $val) {
             $service_name = Service::where(['id' => $val->service])->first;

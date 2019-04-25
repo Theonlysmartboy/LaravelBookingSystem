@@ -229,12 +229,28 @@ $(document).ready(function () {
                     window.location.href = "/admin/" + deleteFunction + "/" + id;
                 });
     });
-        //Function to delete Product
+        //Function to delete Booking
     $(".deleteBooking").click(function () {
         var id = $(this).attr('rel');
         var deleteFunction = $(this).attr('rel1');
         swal({
             title: "Are you sure You want to delete this Booking?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#FF0000",
+            cancelButtonColor: "#87CEFA",
+            confirmButtonText: "Yes, delete it!"
+        },
+                function () {
+                    window.location.href = "/admin/" + deleteFunction + "/" + id;
+                });
+    });
+     $(".deleteClient").click(function () {
+        var id = $(this).attr('rel');
+        var deleteFunction = $(this).attr('rel1');
+        swal({
+            title: "Are you sure You want to delete this Client?",
             text: "You won't be able to revert this!",
             type: "warning",
             showCancelButton: true,
