@@ -21,19 +21,20 @@
                                 <table class="">
                                     <tbody>
                                         <tr>
-                                            <td><h4>ALPHA PHOTOGRAPHY</h4></td>
+                                            <td><h4>{{$company_settings->name}}</h4></td>
                                         </tr>
                                         <tr>
-                                            <td>Your Town</td>
+                                            <td>{{$company_settings->adress}}</td>
                                         </tr>
                                         <tr>
-                                            <td>Your Region/State</td>
+                                            <td>{{$company_settings->town}} &nbsp; - &nbsp;{{$company_settings->code}}</td>
                                         </tr>
                                         <tr>
-                                            <td>Mobile Phone: +4530422244</td>
+                                            <td>{{$company_settings->telephone}}</td>
                                         </tr>
                                         <tr>
-                                            <td >info@alpgaphotography.co.ke</td>
+                                            <td >{{$company_settings->email}} <br>
+                                            {{$company_settings->website}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
