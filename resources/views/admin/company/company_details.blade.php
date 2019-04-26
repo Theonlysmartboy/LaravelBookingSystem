@@ -44,13 +44,13 @@
                             <div class="control-group">
                                 <label class="control-label">Town</label>
                                 <div class="controls">
-                                    <input name="product_town" id="product_town" value="{{$settings->town}}">                             
+                                    <input type="text" name="product_town" id="product_town" value="{{$settings->town}}">                             
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Postal Code</label>
                                 <div class="controls">
-                                    <input name="product_town_code" id="product_town_code" value="{{$settings->code}}">                           
+                                    <input type="text" name="product_town_code" id="product_town_code" value="{{$settings->code}}">                           
                                 </div>
                             </div>
                             <div class="control-group">
@@ -63,13 +63,13 @@
                             <div class="control-group">
                                 <label class="control-label">Email</label>
                                 <div class="controls">
-                                    <textarea name="product_desc" id="product_desc" value="">{{$settings->email}}</textarea>
+                                    <input type="text" name="product_desc" id="product_desc" value="{{$settings->email}}">
                                 </div>
                             </div> 
                             <div class="control-group">
                                 <label class="control-label">Website</label>
                                 <div class="controls">
-                                    <input type="text" name="product_cost" id="product_cost"value="{{$settings->website}}">
+                                    <input type="text" name="product_cost" id="product_cost" value="{{$settings->website}}">
                                 </div>
                             </div>
                             <div class="form-actions">
