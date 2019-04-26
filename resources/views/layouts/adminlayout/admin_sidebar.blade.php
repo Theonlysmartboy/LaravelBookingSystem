@@ -12,8 +12,8 @@
         </li>
         <li class="submenu"><a href="" ><i class="icon icon-tint"></i> <span>Accounts</span></a>
             <ul>
-                <li class="submenu"><a href="{{url('admin/view_invoice')}}"><i class="icon icon-th-list"></i> <span>Invoices</span></a></li>
-                <li class="submenu"><a href="{{url('admin/manage_invoice')}}"><i class="icon icon-plus-sign"></i><span>Bank Accounts</span></a></li>
+                <li><a href="{{url('admin/view_invoice')}}"><i class="icon icon-th-list"></i> <span>Invoices</span></a></li>
+                <li><a href="{{url('admin/accounts')}}"><i class="icon icon-plus-sign"></i><span>Bank Accounts</span></a></li>
             </ul>
         </li>
         <li><a href="{{url('admin/company_settings')}}"><i class="icon icon-cog"></i> <span>Settings</span></a></li>

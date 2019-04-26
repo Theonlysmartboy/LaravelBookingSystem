@@ -5,7 +5,7 @@
         <div id="breadcrumb"> <a href="{{url('admin/dashboard')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> 
             <a href="#">Company</a> <a href="#" class="current">Settings</a> 
         </div>
-        <h1>Edit Products</h1>
+        <h1>Company Details</h1>
     </div>
     <div class="container-fluid"><hr>
         @if(Session::has('flash_message_error'))
