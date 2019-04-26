@@ -137,13 +137,50 @@ $(document).ready(function () {
                 required: true
             },
             product_color: {
-                required: true
+                required: true,
+                number: true
+            },
+            product_desc: {
+                required: true,
+                email: true
             },
             product_cost: {
-                required: true,
-               
+                required: true
+            },
+            product_town: {
+                required: true
+            },
+            product_town_code: {
+                required: true
+
             }
-                    },
+        },
+        errorClass: "help-inline",
+        errorElement: "span",
+        highlight: function (element, errorClass, validClass) {
+            $(element).parents('.control-group').addClass('error');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).parents('.control-group').removeClass('error');
+            $(element).parents('.control-group').addClass('success');
+        }
+    });
+    $("#edit_account").validate({
+        rules: {
+            product_name: {
+                required: true
+            },
+            product_code: {
+                required: true
+            },
+            product_town: {
+                required: true
+            },
+            product_town_code: {
+                required: true
+
+            }
+        },
         errorClass: "help-inline",
         errorElement: "span",
         highlight: function (element, errorClass, validClass) {
@@ -226,7 +263,7 @@ $(document).ready(function () {
                     window.location.href = "/admin/" + deleteFunction + "/" + id;
                 });
     });
-        //Function to delete Booking
+    //Function to delete Booking
     $(".deleteBooking").click(function () {
         var id = $(this).attr('rel');
         var deleteFunction = $(this).attr('rel1');
@@ -243,7 +280,7 @@ $(document).ready(function () {
                     window.location.href = "/admin/" + deleteFunction + "/" + id;
                 });
     });
-     $(".deleteClient").click(function () {
+    $(".deleteClient").click(function () {
         var id = $(this).attr('rel');
         var deleteFunction = $(this).attr('rel1');
         swal({
@@ -259,7 +296,23 @@ $(document).ready(function () {
                     window.location.href = "/admin/" + deleteFunction + "/" + id;
                 });
     });
-    $("#autoclose-alert").fadeTo(5000, 500).slideUp(500, function(){
-    $("#autoclose-alert").slideUp(500);
-});
+    $(".deleteAccount").click(function () {
+        var id = $(this).attr('rel');
+        var deleteFunction = $(this).attr('rel1');
+        swal({
+            title: "Are you sure You want to delete this Account?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#FF0000",
+            cancelButtonColor: "#87CEFA",
+            confirmButtonText: "Yes, delete it!"
+        },
+                function () {
+                    window.location.href = "/admin/" + deleteFunction + "/" + id;
+                });
+    });
+    $("#autoclose-alert").fadeTo(5000, 500).slideUp(500, function () {
+        $("#autoclose-alert").slideUp(500);
+    });
 });
