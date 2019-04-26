@@ -118,7 +118,7 @@ class BookingController extends Controller {
         } else {
             $settings = Setting::where(['is_current' => 1])->get();
             return view('client.payment.make_payment')->with(compact('settings'));
-            ;
+            
         }
     }
 
@@ -146,6 +146,8 @@ class BookingController extends Controller {
                 ->select('bookings.*', 'services.s_name', 'services.description', 'statuses.name', 'charges.amount', 'charges.tax', 'charges.total')
                 ->get()
                 ->where('client', Auth::user()->id);
+        $company_settings = Company::get();
+        dd($company_settings);
         return view('client.payment.invoices')->with(compact('products'));
     }
 
