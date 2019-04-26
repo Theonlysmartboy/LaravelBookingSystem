@@ -53,7 +53,7 @@
                                         {{ $product->service_status }}
                                     </td>
                                     <td><a href="#productModal{{ $product->id }}" data-toggle="modal" class="btn btn-success btn-mini">View <i class="icon icon-eye-open"></i></a> | 
-                                        @if($product->service_status== 'Unpaid')
+                                        @if($product->service_status== 'Unpaid'||$product->service_status== 'Confirmed')
                                         <a href="{{url('client/make_payment/'.$product->id)}}" class="btn btn-warning btn-mini">Make Payment <i class="icon icon-edit"></i></a> | 
                                         @endif
                                         @if($product->service_status=='Paid')

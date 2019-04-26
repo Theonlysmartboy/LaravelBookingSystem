@@ -16,7 +16,7 @@
                 <li class="submenu"><a href="{{url('admin/manage_invoice')}}"><i class="icon icon-plus-sign"></i><span>Bank Accounts</span></a></li>
             </ul>
         </li>
-        <li><a href="{{url('admin/company_Settings')}}"><i class="icon icon-cog"></i> <span>Settings</span></a></li>
+        <li><a href="{{url('admin/company_settings')}}"><i class="icon icon-cog"></i> <span>Settings</span></a></li>
     </ul>
 </div>
 <!--sidebar-menu-->

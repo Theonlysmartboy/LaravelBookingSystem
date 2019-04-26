@@ -21,6 +21,7 @@ Route::match(['get', 'post'], '/admin/update-pwd', 'AdminController@updatePasswo
 Route::get('/logout', 'AdminController@logout');
 Route::get('/admin/dashboard', 'AdminController@dashboard');
 Route::get('/admin/check-pwd', 'AdminController@chkPassword');
+
 //Admin booking routes
 Route::get('/admin/bookings', 'BookingController@viewAllBookings');
 Route::match(['get', 'post'], '/admin/accept_booking/{id}', ['middleware' => 'auth', 'uses' => 'BookingController@acceptBooking']);
@@ -30,6 +31,10 @@ Route::match(['get', 'post'], '/admin/delete_booking/{id}', 'BookingController@d
 //Admin Client routes
 Route::get('/admin/clients', 'ClientController@viewClients');
 Route::match(['get', 'post'], '/admin/delete_client/{id}', 'ClientController@deleteClient');
+
+//Company settings route
+Route::match(['get', 'post'], '/admin/company_settings', 'SettingsController@company');
+
 //Client's Logout route
 Route::get('client/logout', 'BookingController@logout');
 

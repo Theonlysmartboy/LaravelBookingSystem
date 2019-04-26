@@ -13,10 +13,17 @@ class SettingsController extends Controller {
         if (Session::has('adminSession')) {
             if ($request->isMethod('post')) {
                 $data = $request->all();
-            $company = new Company;
-            
+                if (!empty($data['product_desc'])) {
+                    $description = $data['product_desc'];
+                } else {
+                    $description = '_';
+                }
+                Company::where(['id' => 1])->update(['name' => $data['product_name'], 'adress' => $data['product_code'], 'town'=>$data['product_town'], 'code'=>$data['product_town_code'], 'telephone' => $data['product_color'], 'email' => $description,
+                    'website' => $data['product_cost']]);
+                return redirect('/admin/company_settings')->with('flash_message_success', 'Product updated Successfully');
             } else {
-                $settings = Company::get();
+                $settings = Company::get()->first();
+                //dd($settings);
                 return view('admin.company.company_details')->with(compact('settings'));
             }
         } else {
