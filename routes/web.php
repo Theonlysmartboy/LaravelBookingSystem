@@ -24,9 +24,17 @@ Route::get('/admin/check-pwd', 'AdminController@chkPassword');
 
 //Admin booking routes
 Route::get('/admin/bookings', 'BookingController@viewAllBookings');
-Route::match(['get', 'post'], '/admin/accept_booking/{id}', ['middleware' => 'auth', 'uses' => 'BookingController@acceptBooking']);
-Route::match(['get', 'post'], '/admin/reject_booking/{id}', ['middleware' => 'auth', 'uses' => 'BookingController@rejectBooking']);
+Route::match(['get', 'post'], '/admin/accept_booking/{id}', 'BookingController@acceptBooking');
+Route::match(['get', 'post'], '/admin/reject_booking/{id}', 'BookingController@rejectBooking');
 Route::match(['get', 'post'], '/admin/delete_booking/{id}', 'BookingController@deleteBooking');
+
+//Admin Accounts routes
+Route::get('/admin/accounts', 'SettingsController@viewAccounts');
+Route::match(['get', 'post'], '/admin/add_bank_details', 'SettingsController@addAccount');
+Route::match(['get', 'post'], '/admin/edit_bank_details/{id}', 'SettingsController@editAccount');
+Route::match(['get', 'post'], '/admin/delete_bank_details/{id}', 'SettingsController@deleteAccount');
+Route::match(['get', 'post'], '/admin/enable/{id}', 'SettingsController@enable');
+Route::match(['get', 'post'], '/admin/disable/{id}', 'SettingsController@disable');
 
 //Admin Client routes
 Route::get('/admin/clients', 'ClientController@viewClients');
