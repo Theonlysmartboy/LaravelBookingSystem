@@ -12,6 +12,7 @@ use App\Status;
 use App\Setting;
 use PDF;
 use DB;
+use App\Company;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Input;
 
@@ -44,12 +45,12 @@ class BookingController extends Controller {
         } else {
 //Services drop down start
             $services = Service::where(['parent_id' => 0])->get();
-            $categories_dropdown = "<option selected>Select<option>";
+            $categories_dropdown = "<option selected>Select</option>";
             foreach ($services as $cat) {
-                $categories_dropdown .= "<option class='bg-ready' value='" . $cat->id . "'>" . $cat->s_name . "<option>";
+                $categories_dropdown .= "<option class='bg-ready' value='" . $cat->id . "'>" . $cat->s_name . "</option>";
                 $sub_categories = Service::where(['parent_id' => $cat->id])->get();
                 foreach ($sub_categories as $sub_cat) {
-                    $categories_dropdown .= "<option value='" . $sub_cat->id . "'>&nbsp;--&nbsp;" . $sub_cat->s_name . "<option>";
+                    $categories_dropdown .= "<option value='" . $sub_cat->id . "'>&nbsp;--&nbsp;" . $sub_cat->s_name . "</option>";
                 }
             }
 //Services dropdown end
@@ -118,7 +119,6 @@ class BookingController extends Controller {
         } else {
             $settings = Setting::where(['is_current' => 1])->get();
             return view('client.payment.make_payment')->with(compact('settings'));
-            
         }
     }
 
@@ -146,9 +146,8 @@ class BookingController extends Controller {
                 ->select('bookings.*', 'services.s_name', 'services.description', 'statuses.name', 'charges.amount', 'charges.tax', 'charges.total')
                 ->get()
                 ->where('client', Auth::user()->id);
-        $company_settings = Company::get();
-        dd($company_settings);
-        return view('client.payment.invoices')->with(compact('products'));
+        $company_settings = Company::get()->first();
+        return view('client.payment.invoices')->with(compact('products', 'company_settings'));
     }
 
     public function pdfview(Request $request) {
