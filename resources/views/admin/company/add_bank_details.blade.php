@@ -5,7 +5,7 @@
         <div id="breadcrumb"> <a href="{{url('admin/dashboard')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> 
             <a href="{{url('admin/accounts')}}">Accounts</a> <a href="#" class="current">Add Account</a> 
         </div>
-        <h1>Edit Products</h1>
+        <h1>Add Comapny Details</h1>
     </div>
     <div class="container-fluid"><hr>
         @if(Session::has('flash_message_error'))
@@ -24,52 +24,39 @@
             <div class="span12">
                 <div class="widget-box">
                     <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
-                        <h5>Edit Company Details Form</h5>
+                        <h5>Add Company Details Form</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal" method="post" action="{{url('admin/company_settings/')}}" name="edit_product" id="edit_product" novalidate="novalidate">{{ csrf_field() }}
+                        <form class="form-horizontal" method="post" action="{{url('admin/add_bank_details')}}" name="edit_account" id="edit_account" novalidate="novalidate">{{ csrf_field() }}
                             <div class="control-group">
-                                <label class="control-label">Name</label>
+                                <label class="control-label">Bank Name</label>
                                 <div class="controls">
-                                    <input type="text" name="product_name" id="product_name" value="{{$settings->name}}">
+                                    <input type="text" name="product_name" id="product_name" >
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Address</label>
+                                <label class="control-label">Branch</label>
                                 <div class="controls">
-                                    <textarea rows="4" cols="50" name="product_code" id="product_code">{{$settings->adress}}
-                                    </textarea>                                
+                                    <input type="text" name="product_code" id="product_code" >                                                                
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Town</label>
+                                <label class="control-label">Account Name</label>
                                 <div class="controls">
-                                    <input name="product_town" id="product_town" value="{{$settings->town}}">                             
+                                    <input name="product_town" id="product_town" >                             
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Postal Code</label>
+                                <label class="control-label">Account Number</label>
                                 <div class="controls">
-                                    <input name="product_town_code" id="product_town_code" value="{{$settings->code}}">                           
+                                    <input name="product_town_code" id="product_town_code" >                           
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Telephone</label>
+                                <label class="control-label">Pay bill Number <small style="color: #ff3333;">(Optional)</small></label>
                                 <div class="controls">
-                                    <input type="text" name="product_color" id="product_color" value="{{$settings->telephone}}">
+                                    <input type="text" name="product_color" id="product_color" >
 
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Email</label>
-                                <div class="controls">
-                                    <textarea name="product_desc" id="product_desc" value="">{{$settings->email}}</textarea>
-                                </div>
-                            </div> 
-                            <div class="control-group">
-                                <label class="control-label">Website</label>
-                                <div class="controls">
-                                    <input type="text" name="product_cost" id="product_cost"value="{{$settings->website}}">
                                 </div>
                             </div>
                             <div class="form-actions">
