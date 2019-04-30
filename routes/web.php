@@ -27,6 +27,8 @@ Route::get('/admin/bookings', 'BookingController@viewAllBookings');
 Route::match(['get', 'post'], '/admin/accept_booking/{id}', 'BookingController@acceptBooking');
 Route::match(['get', 'post'], '/admin/reject_booking/{id}', 'BookingController@rejectBooking');
 Route::match(['get', 'post'], '/admin/delete_booking/{id}', 'BookingController@deleteBooking');
+Route::get('/admin/invoices', 'InvoicesController@viewInvoices');
+
 
 //Admin Accounts routes
 Route::get('/admin/accounts', 'SettingsController@viewAccounts');

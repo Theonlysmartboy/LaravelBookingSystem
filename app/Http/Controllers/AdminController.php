@@ -40,6 +40,7 @@ class AdminController extends Controller {
             $total_clients = User::where(['role' => 0])->count();
             $total_invoices = Invoice::count();
             $total_services = Service::count();
+            $total_fee = Booking::sum()
             $new_clients = User::where(['role' => 0])->count();
             return view('admin.dashboard')->with(compact('total_bookings', 'pending_bookings', 'total_clients', 'total_invoices', 'total_services', 'new_clients'));
         } else {

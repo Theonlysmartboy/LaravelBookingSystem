@@ -8,12 +8,14 @@
                 <li><a href="{{url('admin/add_service')}}"><i class="icon icon-plus-sign"></i><span>Add Service</span></a></li>
             </ul>
         </li>
-        <li> <a href="{{url('admin/view_clients')}}"><i class="icon icon-user"></i> <span>Clients</span></a>
+        <li> <a href="{{url('admin/clients')}}"><i class="icon icon-user"></i> <span>Clients</span></a>
         </li>
         <li class="submenu"><a href="" ><i class="icon icon-tint"></i> <span>Accounts</span></a>
             <ul>
                 <li><a href="{{url('admin/view_invoice')}}"><i class="icon icon-th-list"></i> <span>Invoices</span></a></li>
                 <li><a href="{{url('admin/accounts')}}"><i class="icon icon-plus-sign"></i><span>Bank Accounts</span></a></li>
+            <li><a href="{{url('admin/payments')}}"><i class="icon icon-plus-sign"></i><span>Payments</span></a></li>
+            
             </ul>
         </li>
         <li><a href="{{url('admin/company_settings')}}"><i class="icon icon-cog"></i> <span>Settings</span></a></li>
