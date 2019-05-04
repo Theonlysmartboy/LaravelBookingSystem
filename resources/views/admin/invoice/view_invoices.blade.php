@@ -50,7 +50,7 @@
                                     <td class="text-center">{{ $invoice->s_name }}</td>
                                     <td class="text-center">{{ $invoice->total }}</td>
                                     <td class="text-center">{{ $invoice->status }}</td>
-                                    <td><a href="#productModal{{ $invoice->id }}" data-toggle="modal" class="btn btn-success btn-mini">View <i class="icon icon-eye-open"></i></a> | 
+                                    <td><a href="#productModal{{ $invoice->id }}" data-toggle="modal" class="btn btn-success btn-mini">Add PAYMENT <i class="icon icon-eye-open"></i></a> | 
                                         <a rel="{{$invoice->id}}" rel1="delete_bank_details" href="javascript:" class="btn btn-danger btn-mini deleteAccount">Delete <i class="icon icon-trash"></i></a></td>
                                 </tr>
                             <div id="productModal{{ $invoice->id }}" class="modal hide">
