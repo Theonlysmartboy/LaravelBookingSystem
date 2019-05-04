@@ -40,7 +40,6 @@ class BookingController extends Controller {
             $product->invoice = 'APP' . rand(0, 9999) . 'IN';
             $product->discount = 0;
             $product->save();
-
             return redirect('/client/view_bookings')->with('flash_message_success', 'Product added Successfully');
         } else {
 //Services drop down start
@@ -60,16 +59,13 @@ class BookingController extends Controller {
 
     public function viewAllBookings() {
         if (Session::has('adminSession')) {
-            $allProducts = Booking::get();
-            $products = $allProducts;
-            foreach ($products as $key => $val) {
-                $service_name = Service::where(['id' => $val->service])->first();
-                $service_fee = Charge::where(['id' => $val->charge])->first();
-                $service_status = Status::where(['id' => $val->status])->first();
-                $products[$key]->service_name = $service_name->s_name;
-                $products[$key]->service_fee = $service_fee->total;
-                $products[$key]->service_status = $service_status->name;
-            }
+            $products = DB::table('bookings')
+                    ->join('users', 'bookings.client', 'users.id')
+                    ->join('services', 'bookings.service', '=', 'services.id')
+                    ->join('charges', 'bookings.charge', '=', 'charges.id')
+                    ->join('statuses', 'bookings.status', '=', 'statuses.id')
+                    ->select('bookings.*', 'users.name As uname', 'services.s_name', 'services.description', 'statuses.name', 'charges.amount', 'charges.tax', 'charges.total')
+                    ->get();
             return view('admin.booking.view_bookings')->with(compact('products'));
         } else {
             return redirect('/admin')->with('flash_message_error', 'Access denied! Please Login first');
@@ -79,7 +75,7 @@ class BookingController extends Controller {
     public function acceptBooking($id = null) {
         if (Session::has('adminSession')) {
             if (!empty($id)) {
-                Booking::where(['id' => $id])->update(['status' => 2]);
+                Booking::where(['id' => $id])->update(['status' => 3]);
                 return redirect()->back()->with('flash_message_success', 'Status changed Successfully');
             }
         } else {

@@ -21,7 +21,7 @@
                 <li class="bg_ly"> <a href="{{url('admin/bookings')}}"> <i class="icon-inbox"></i><strong>{{ $total_bookings }} Bookings</strong> </a> </li>
                 <li class="bg_lo"> <a href="{{url('admin/invoices')}}"> <i class="icon-th"></i> <strong>{{ $total_invoices }} Invoices</strong></a> </li>
                 <li class="bg_ls"> <a href="{{url('admin/services')}}"> <i class="icon-fullscreen"></i> <strong>{{ $total_services }} Services</strong></a> </li>
-                  </ul>
+            </ul>
         </div>
         <!--End-Action boxes-->    
         <!--Chart-box-->    
@@ -38,7 +38,9 @@
                         <div class="span3">
                             <ul class="site-stats">
                                 <li class="bg_lh"><i class="icon-user"></i> <strong>{{ $total_clients }}</strong> <small>Total Clients</small></li>
-                                <li class="bg_lh"><i class="icon-plus"></i> <strong>{{$new_clients}} </strong> <small>New Clients </small></li>
+                                <li class="bg_lh"><i class="icon-user"></i> <strong>{{ $new_clients }}</strong> <small>New Clients</small></li>
+                                <li class="bg_lh"><i class="icon-money"></i> <strong>KSH &nbsp;{{$total_fee->revenue}} </strong> <small>Invoiced Amount </small></li>
+                                <li class="bg_lh"><i class="icon-money"></i> <strong>KSH &nbsp;{{$total_paid->paid}} </strong> <small>Amount Paid </small></li>
                                 <li class="bg_lh"><i class="icon-tag"></i> <strong>{{ $total_bookings }} </strong> <small>Total Bookings</small></li>
                                 <li class="bg_lh"><i class="icon-repeat"></i> <strong>{{ $pending_bookings }} </strong> <small>Pending Bookings</small></li>
                             </ul>

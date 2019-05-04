@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use DB;
+use App\Company;
 
 class InvoicesController extends Controller {
 
@@ -17,7 +18,8 @@ class InvoicesController extends Controller {
                     ->join('statuses', 'bookings.status', '=', 'statuses.id')
                     ->select('bookings.*','users.name As uname', 'services.s_name', 'services.description', 'statuses.name as status', 'charges.amount', 'charges.tax', 'charges.total')
                     ->get();
-                       return view('admin.invoice.view_invoices')->with(compact('invoices'));
+            $company_settings = Company::get()->first();
+                       return view('admin.invoice.view_invoices')->with(compact('invoices', 'company_settings'));
         } else {
             return redirect('/admin')->with('flash_message_error', 'Access denied! Please Login first');
         }

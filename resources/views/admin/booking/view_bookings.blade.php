@@ -45,14 +45,14 @@
                                 @foreach($products as $product)
                                 <tr class="gradeX">
                                     <td class="text-center">{{ $product->id }}</td>
-                                    <td class="text-center">{{$product->client}}</td>
-                                    <td class="text-center">{{ $product->service_name }}</td>
+                                    <td class="text-center">{{$product->uname}}</td>
+                                    <td class="text-center">{{ $product->s_name }}</td>
                                     <td class="text-center">{{ $product->startdatetime }}</td>
                                     <td class="text-center">{{ $product->enddatetime }}</td>
                                     <td class="text-center">{{ $product->town }} &nbsp; {{ $product->county }} &nbsp; County</td>
-                                    <td class="text-center">Ksh &nbsp;{{ $product->service_fee }}</td>
+                                    <td class="text-center">Ksh &nbsp;{{ $product->total }}</td>
                                     <td class="text-center">
-                                        {{ $product->service_status }}
+                                        {{ $product->name }}
                                     </td>
                                     <td><a href="#productModal{{ $product->id }}" data-toggle="modal" class="btn btn-success btn-mini">View <i class="icon icon-eye-open"></i></a> | 
                                         @if($product->status==1)
@@ -64,13 +64,13 @@
                             <div id="productModal{{ $product->id }}" class="modal hide">
                                 <div class="modal-header bg-blue-dark">
                                     <button data-dismiss="modal" class="close" type="button">×</button>
-                                    <h3 class="text-center">Session: {{ $product->service_name }}</h3>
+                                    <h3 class="text-center">Session: {{ $product->s_name }}</h3>
                                 </div>
                                 <div class="modal-body">
                                     <p class="text-center">START: >{{ $product->startdatetime }}</p>
                                     <p class="text-center bg-primary">END: {{$product->enddatetime}}</p>
                                     <p class="text-center">LOCATION: {{ $product->town }} &nbsp; {{ $product->county }} &nbsp; County</p>
-                                    <p class="text-center">PRICE: Ksh &nbsp;{{$product->service_fee}}</p>
+                                    <p class="text-center">PRICE: Ksh &nbsp;{{$product->total}}</p>
                                 </div>
                             </div>
                             @endforeach

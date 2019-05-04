@@ -9,6 +9,7 @@ use App\User;
 use App\Booking;
 use App\Invoice;
 use App\Service;
+use DB;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller {
@@ -36,13 +37,18 @@ class AdminController extends Controller {
     public function dashboard() {
         if (Session::has('adminSession')) {
             $total_bookings = Booking::count();
-            $pending_bookings = Booking::where(['status' => 2])->count();
+            $pending_bookings = Booking::where(['status' => 1])->count();
             $total_clients = User::where(['role' => 0])->count();
+            $new_clients = User::where(['role' => 0])->count();
             $total_invoices = Invoice::count();
             $total_services = Service::count();
-            $total_fee = Booking::sum();
-            $new_clients = User::where(['role' => 0])->count();
-            return view('admin.dashboard')->with(compact('total_bookings', 'pending_bookings', 'total_clients', 'total_invoices', 'total_services', 'new_clients'));
+            $total_fee = Booking::select(DB::raw('SUM(charges.total) As revenue'))
+                            ->leftJoin('charges', 'bookings.charge', '=', 'charges.id')->first();
+            $total_paid = Booking::select(DB::raw('SUM(charges.total) As paid'))
+                            ->leftJoin('charges', 'bookings.charge', '=', 'charges.id')
+            ->where('bookings.status','4')->first();
+            
+            return view('admin.dashboard')->with(compact('total_bookings', 'pending_bookings', 'total_clients', 'new_clients', 'total_invoices', 'total_services', 'total_fee','total_paid'));
         } else {
             return redirect('/admin')->with('flash_message_error', 'Access denied! Please Login first');
         }
