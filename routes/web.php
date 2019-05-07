@@ -33,6 +33,11 @@ Route::get('/admin/clients', 'ClientController@viewClients');
 Route::match(['get', 'post'], '/admin/delete_client/{id}', 'ClientController@deleteClient');
 //Company settings route
 Route::match(['get', 'post'], '/admin/company_settings', 'SettingsController@company');
+//Admin Services routes
+Route::get('/admin/view_services', 'ServicesController@viewServices');
+Route::match(['get', 'post'], '/admin/add_service', 'ServicesController@addService');
+Route::match(['get', 'post'], '/admin/edit_service/{id}', 'ServicesController@editService');
+Route::match(['get', 'post'], '/admin/delete_service/{id}', 'ServicesController@deleteService');
 //Client's Logout route
 Route::get('client/logout', 'BookingController@logout');
 //Client's Booking routes
