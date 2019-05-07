@@ -3,7 +3,7 @@
 <div id="content">
     <div id="content-header">
         <div id="breadcrumb"> <a href="{{url('admin/dashboard')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> 
-            <a href="{{url('admin/add_fee')}}" >New Charge</a> <a href="" class="current">View Charges</a>
+            <a href="{{url('admin/add_payment')}}" >New Charge</a> <a href="" class="current">View Charges</a>
         </div>
         <h1>View Charges</h1>
     </div>
@@ -49,8 +49,8 @@
                                     <td class="text-center">{{ $charge->tax *100 }}</td>
                                     <td class="text-center">{{ $charge->total }}</td>
                                     <td><a href="#productModal{{ $charge->id }}" data-toggle="modal" class="btn btn-success btn-mini">View <i class="icon icon-eye-open"></i></a> | 
-                                        <a href="{{url('admin/edit_fee/'.$charge->id)}}" class="btn btn-primary btn-mini">Edit <i class="icon icon-edit"></i></a> | 
-                                        <a rel="{{$charge->id}}" rel1="delete_fee" href="javascript:" class="btn btn-danger btn-mini deleteAccount">Delete <i class="icon icon-trash"></i></a></td>
+                                        <a href="{{url('admin/edit_payment/'.$charge->id)}}" class="btn btn-primary btn-mini">Edit <i class="icon icon-edit"></i></a> | 
+                                        <a rel="{{$charge->id}}" rel1="delete_payment" href="javascript:" class="btn btn-danger btn-mini deletePayment">Delete <i class="icon icon-trash"></i></a></td>
                                 </tr>
                             <div id="productModal{{ $charge->id }}" class="modal hide">
                                 <div class="modal-header bg-primary">

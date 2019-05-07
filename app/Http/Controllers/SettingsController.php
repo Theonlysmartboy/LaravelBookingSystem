@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Company;
 use App\Setting;
+use App\Charge;
+use DB;
+use App\Service;
 use Session;
 
 class SettingsController extends Controller {
@@ -103,6 +106,94 @@ class SettingsController extends Controller {
             } else {
                 $settings = Setting::where(['id' => $id])->first();
                 return view('admin.company.edit_bank_details')->with(compact('settings'));
+            }
+        } else {
+            return redirect('/admin')->with('flash_message_error', 'Access denied! Please Login first');
+        }
+    }
+
+    public function viewPayments() {
+        if (Session::has('adminSession')) {
+            $charges = DB::table('charges')
+                    ->join('services', 'charges.service', '=', 'services.id')
+                    ->select('charges.*', 'services.s_name')
+                    ->get();
+            return view('admin.payment.view_fees')->with(compact('charges'));
+        } else {
+            return redirect('/admin')->with('flash_message_error', 'Access denied! Please Login first');
+        }
+    }
+
+    public function editPayment(Request $request, $id = null) {
+        if (Session::has('adminSession')) {
+            if ($request->isMethod('post')) {
+                $data = $request->all();
+                Charge::where(['id' => $id])->update(['name' => $data['product_name'],
+                    'service' => $data['category_id'], 'amount' => $data['product_town'],
+                    'tax' => $data['product_town_code'], 'total' => $data['product_color']]);
+                return redirect('/admin/payments')->with('flash_message_success', 'Account updated Successfully');
+            } else {
+                $charges = Charge::where(['id' => $id])->first();
+//Categories drop down start
+                $categories = Service::where(['parent_id' => 0])->get();
+                $categories_dropdown = "<option selected disabled>Select<option>";
+                foreach ($categories as $cat) {
+                    $categories_dropdown .= "<option value='" . $cat->id . "'>" . $cat->s_name . "<option>";
+                    $sub_categories = Service::where(['parent_id' => $cat->id])->get();
+                    foreach ($sub_categories as $sub_cat) {
+                        if ($sub_cat->id == $charges->service) {
+                            $selected = "selected";
+                        } else {
+                            $selected = "";
+                        }
+                        $categories_dropdown .= "<option value='" . $sub_cat->id . "'" . $selected . ">&nbsp;--&nbsp;" . $sub_cat->s_name . "<option>";
+                    }
+                }
+//Categories dropdown end
+                return view('admin.payment.edit_fee')->with(compact('charges', 'categories_dropdown'));
+            }
+        } else {
+            return redirect('/admin')->with('flash_message_error', 'Access denied! Please Login first');
+        }
+    }
+
+    public function addPayment(Request $request) {
+        if (Session::has('adminSession')) {
+            if ($request->isMethod('post')) {
+                $data = $request->all();
+                $charge = new Charge;
+                $charge->name = $data['product_name'];
+                $charge->service = $data['category_id'];
+                $charge->amount = $data['product_town'];
+                $charge->tax = $data['product_town_code'] / 100;
+                $charge->total = $data['product_town'] + $data['product_town'] * $data['product_town_code'] / 100;
+                $charge->save();
+
+                return redirect('/admin/payments')->with('flash_message_success', 'Payment Added Successfully');
+            } else {
+                //Categories drop down start
+                $categories = Service::where(['parent_id' => 0])->get();
+                $categories_dropdown = "<option selected disabled>Select<option>";
+                foreach ($categories as $cat) {
+                    $categories_dropdown .= "<option value='" . $cat->id . "'>" . $cat->s_name . "<option>";
+                    $sub_categories = Service::where(['parent_id' => $cat->id])->get();
+                    foreach ($sub_categories as $sub_cat) {
+                        $categories_dropdown .= "<option value='" . $sub_cat->id . "'>&nbsp;--&nbsp;" . $sub_cat->s_name . "<option>";
+                    }
+                }
+//Categories dropdown end
+                return view('admin.payment.add_fee')->with(compact('categories_dropdown'));
+            }
+        } else {
+            return redirect('/admin')->with('flash_message_error', 'Access denied! Please Login first');
+        }
+    }
+
+    public function deletePayment($id = null) {
+        if (Session::has('adminSession')) {
+            if (!empty($id)) {
+                Charge::where(['id' => $id])->delete();
+                return redirect()->back()->with('flash_message_success', 'Deleted Successfully');
             }
         } else {
             return redirect('/admin')->with('flash_message_error', 'Access denied! Please Login first');

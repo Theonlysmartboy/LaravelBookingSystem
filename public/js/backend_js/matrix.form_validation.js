@@ -191,6 +191,34 @@ $(document).ready(function () {
             $(element).parents('.control-group').addClass('success');
         }
     });
+      $("#add_payment").validate({
+        rules: {
+            product_name: {
+                required: true
+            },
+            product_code: {
+                required: true
+            },
+            product_town: {
+                required: true,
+                number:true
+            },
+            product_town_code: {
+                required: true,
+                number:true
+
+            }
+        },
+        errorClass: "help-inline",
+        errorElement: "span",
+        highlight: function (element, errorClass, validClass) {
+            $(element).parents('.control-group').addClass('error');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).parents('.control-group').removeClass('error');
+            $(element).parents('.control-group').addClass('success');
+        }
+    });
     $("#number_validate").validate({
         rules: {
             min: {
@@ -301,6 +329,22 @@ $(document).ready(function () {
         var deleteFunction = $(this).attr('rel1');
         swal({
             title: "Are you sure You want to delete this Account?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#FF0000",
+            cancelButtonColor: "#87CEFA",
+            confirmButtonText: "Yes, delete it!"
+        },
+                function () {
+                    window.location.href = "/admin/" + deleteFunction + "/" + id;
+                });
+    });
+    $(".deletePayment").click(function () {
+        var id = $(this).attr('rel');
+        var deleteFunction = $(this).attr('rel1');
+        swal({
+            title: "Are you sure You want to delete this Charge?",
             text: "You won't be able to revert this!",
             type: "warning",
             showCancelButton: true,
