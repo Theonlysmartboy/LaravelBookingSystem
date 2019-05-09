@@ -356,6 +356,22 @@ $(document).ready(function () {
                     window.location.href = "/admin/" + deleteFunction + "/" + id;
                 });
     });
+       $(".deleteService").click(function () {
+        var id = $(this).attr('rel');
+        var deleteFunction = $(this).attr('rel1');
+        swal({
+            title: "Are you sure You want to delete this Service?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#FF0000",
+            cancelButtonColor: "#87CEFA",
+            confirmButtonText: "Yes, delete it!"
+        },
+                function () {
+                    window.location.href = "/admin/" + deleteFunction + "/" + id;
+                });
+    });
     $("#autoclose-alert").fadeTo(5000, 500).slideUp(500, function () {
         $("#autoclose-alert").slideUp(500);
     });
