@@ -46,9 +46,9 @@ class AdminController extends Controller {
                             ->leftJoin('charges', 'bookings.charge', '=', 'charges.id')->first();
             $total_paid = Booking::select(DB::raw('SUM(charges.total) As paid'))
                             ->leftJoin('charges', 'bookings.charge', '=', 'charges.id')
-            ->where('bookings.status','4')->first();
-            
-            return view('admin.dashboard')->with(compact('total_bookings', 'pending_bookings', 'total_clients', 'new_clients', 'total_invoices', 'total_services', 'total_fee','total_paid'));
+                            ->where('bookings.status', '4')->first();
+
+            return view('admin.dashboard')->with(compact('total_bookings', 'pending_bookings', 'total_clients', 'new_clients', 'total_invoices', 'total_services', 'total_fee', 'total_paid'));
         } else {
             return redirect('/admin')->with('flash_message_error', 'Access denied! Please Login first');
         }
@@ -91,6 +91,21 @@ class AdminController extends Controller {
                 User::where('email', $email)->update(['password' => $password]);
                 Session::flush();
                 return redirect('/admin')->with('flash_message_success', 'Password Updated Successfully');
+            }
+        } else {
+            return redirect('/admin')->with('flash_message_error', 'Access denied! Please Login first');
+        }
+    }
+
+    public function updateProfile(Request $request) {
+        if (Session::has('adminSession')) {
+            if ($request->isMethod('post')) {
+                
+                return redirect('/admin')->with('flash_message_success', 'Profile Updated Successfully');
+            } else {
+                $profile = User::where(['email' => Auth::user()->email])->first();
+                return view('admin.profile')->with(compact($profile));
+                
             }
         } else {
             return redirect('/admin')->with('flash_message_error', 'Access denied! Please Login first');

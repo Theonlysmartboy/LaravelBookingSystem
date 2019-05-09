@@ -2,10 +2,10 @@
 @section('content')
 <div id="content">
     <div id="content-header">
-        <div id="breadcrumb"> <a href="{{url('admin/dashboard')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> 
-            <a href="{{url('admin/view_services')}}">Services</a> <a href="#" class="current">Add Service</a> 
+        <div id="breadcrumb"> <a href="{{url('/admin/dashboard')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> 
+            <a href="#" class="current">Profile</a> 
         </div>
-        <h1>Add Service</h1>
+        <h1>Update Profile</h1>
     </div>
     <div class="container-fluid"><hr>
         @if(Session::has('flash_message_error'))
@@ -24,43 +24,42 @@
             <div class="span12">
                 <div class="widget-box">
                     <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
-                        <h5>Add Service Form</h5>
+                        <h5>Update Profile Form</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal" method="post" action="{{url('admin/add_service')}}" name="edit_account" id="edit_account" novalidate="novalidate">{{ csrf_field() }}
+                        <form class="form-horizontal" method="post" action="{{url('admin/update_profile')}}" name="add_product" id="add_product" novalidate="novalidate">{{ csrf_field() }}
                             <div class="control-group">
-                                <label class="control-label">Service Name</label>
+                                <label class="control-label">Full Name </label>
                                 <div class="controls">
-                                    <input type="text" name="product_name" id="product_name">
+                                    <input type="text" id="fname" name="fname">
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Parent Service</label>
+                                <label class="control-label">Email</label>
                                 <div class="controls">
-                                    <select name="category_id" style="width: 220px;">
-                                        <option value="0">Parent</option>
-                                        @foreach($services as $level)
-                                        <option value="{{$level->id}}">{{$level->s_name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <input type="text" id="email" name="email">
                                 </div>
-                            </div>
+                            </div>                                             
                             <div class="control-group">
-                                <label class="control-label">Description</label>
+                                <label class="control-label">Address</label>
                                 <div class="controls">
-                                    <input type="text" name="product_town" id="product_town">                             
+                                    <textarea name="adress" id="adress"></textarea>
+                                </div>
+                            </div> 
+                            <div class="control-group">
+                                <label class="control-label">Telephone</label>
+                                <div class="controls">
+                                    <input type="text" name="tel" id="tel">
                                 </div>
                             </div>
+                            <div class="form-actions">
+                                <input type="submit" value="Update" class="btn btn-success">
+                            </div>
+                        </form>
                     </div>
-                    <div class="form-actions">
-                        <input type="submit" value="Save" class="btn btn-success">
-                    </div>
-                    </form>
                 </div>
             </div>
         </div>
     </div>
-
-</div>
 </div>
 @endsection

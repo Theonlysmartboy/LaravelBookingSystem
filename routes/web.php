@@ -10,6 +10,7 @@ Route::match(['get', 'post'], '/admin/update-pwd', 'AdminController@updatePasswo
 Route::get('/logout', 'AdminController@logout');
 Route::get('/admin/dashboard', 'AdminController@dashboard');
 Route::get('/admin/check-pwd', 'AdminController@chkPassword');
+Route::match(['get', 'post'], '/admin/update_profile', 'AdminController@updateProfile');
 //Admin booking routes
 Route::get('/admin/bookings', 'BookingController@viewAllBookings');
 Route::match(['get', 'post'], '/admin/accept_booking/{id}', 'BookingController@acceptBooking');
@@ -40,6 +41,7 @@ Route::match(['get', 'post'], '/admin/edit_service/{id}', 'ServicesController@ed
 Route::match(['get', 'post'], '/admin/delete_service/{id}', 'ServicesController@deleteService');
 //Client's Logout route
 Route::get('client/logout', 'BookingController@logout');
+Route::match(['get', 'post'], '/client/update_profile', ['middleware' => 'auth', 'uses' => 'BookingController@updateProfile']);
 //Client's Booking routes
 Route::match(['get', 'post'], '/client/add_booking', ['middleware' => 'auth', 'uses' => 'BookingController@book']);
 Route::get('/client/view_bookings', ['middleware' => 'auth', 'uses' => 'BookingController@viewBookings']);
