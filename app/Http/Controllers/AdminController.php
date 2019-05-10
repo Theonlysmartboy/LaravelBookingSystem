@@ -100,12 +100,10 @@ class AdminController extends Controller {
     public function updateProfile(Request $request) {
         if (Session::has('adminSession')) {
             if ($request->isMethod('post')) {
-                
+
                 return redirect('/admin')->with('flash_message_success', 'Profile Updated Successfully');
             } else {
-                $profile = User::where(['email' => Auth::user()->email])->first();
-                return view('admin.profile')->with(compact($profile));
-                
+                return view('admin.profile');
             }
         } else {
             return redirect('/admin')->with('flash_message_error', 'Access denied! Please Login first');
