@@ -100,8 +100,10 @@ class AdminController extends Controller {
     public function updateProfile(Request $request) {
         if (Session::has('adminSession')) {
             if ($request->isMethod('post')) {
-
-                return redirect('/admin')->with('flash_message_success', 'Profile Updated Successfully');
+                $data = $request->all();
+                $email = Auth::user()->email;
+                User::where(['email' => $email])->update(['full_name' => $data['fname'], 'contact_adress' => $data['address'], 'telephone' => $data['tel']]);
+                return redirect('/admin/dashboard')->with('flash_message_success', 'Profile Updated Successfully');
             } else {
                 return view('admin.profile');
             }

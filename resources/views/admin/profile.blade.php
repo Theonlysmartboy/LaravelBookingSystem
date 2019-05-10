@@ -33,17 +33,11 @@
                                 <div class="controls">
                                     <input type="text" id="fname" name="fname">
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Email</label>
-                                <div class="controls">
-                                    <input type="text" id="email" name="email">
-                                </div>
-                            </div>                                             
+                            </div>                                                             
                             <div class="control-group">
                                 <label class="control-label">Address</label>
                                 <div class="controls">
-                                    <textarea name="adress" id="adress"></textarea>
+                                    <textarea name="address" id="address"></textarea>
                                 </div>
                             </div> 
                             <div class="control-group">
