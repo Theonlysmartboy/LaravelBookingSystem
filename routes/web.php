@@ -41,7 +41,7 @@ Route::match(['get', 'post'], '/admin/edit_service/{id}', 'ServicesController@ed
 Route::match(['get', 'post'], '/admin/delete_service/{id}', 'ServicesController@deleteService');
 //Client's Logout route
 Route::get('client/logout', 'BookingController@logout');
-Route::match(['get', 'post'], '/client/update_profile', ['middleware' => 'auth', 'uses' => 'BookingController@updateProfile']);
+Route::match(['get', 'post'], '/client/update_profile', ['middleware' => 'auth', 'uses' => 'SettingsController@updateProfile']);
 //Client's Booking routes
 Route::match(['get', 'post'], '/client/add_booking', ['middleware' => 'auth', 'uses' => 'BookingController@book']);
 Route::get('/client/view_bookings', ['middleware' => 'auth', 'uses' => 'BookingController@viewBookings']);

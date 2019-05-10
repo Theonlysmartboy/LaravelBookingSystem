@@ -2,7 +2,7 @@
 @section('content')
 <div id="content">
     <div id="content-header">
-        <div id="breadcrumb"> <a href="{{url('/admin/dashboard')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> 
+        <div id="breadcrumb"> <a href="{{url('/home')}}" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> 
             <a href="#" class="current">Profile</a> 
         </div>
         <h1>Update Profile</h1>
@@ -33,13 +33,7 @@
                                 <div class="controls">
                                     <input type="text" id="fname" name="fname">
                                 </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">Email</label>
-                                <div class="controls">
-                                    <input type="text" id="email" name="email">
-                                </div>
-                            </div>                                             
+                            </div>                                                                      
                             <div class="control-group">
                                 <label class="control-label">Address</label>
                                 <div class="controls">
