@@ -27,7 +27,7 @@
                         <h5>Update Profile Form</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form class="form-horizontal" method="post" action="{{url('admin/update_profile')}}" name="add_product" id="add_product" novalidate="novalidate">{{ csrf_field() }}
+                        <form class="form-horizontal" method="post" action="{{url('client/update_profile')}}" name="add_product" id="add_product" novalidate="novalidate">{{ csrf_field() }}
                             <div class="control-group">
                                 <label class="control-label">Full Name </label>
                                 <div class="controls">

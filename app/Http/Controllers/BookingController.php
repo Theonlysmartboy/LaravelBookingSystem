@@ -171,7 +171,7 @@ class BookingController extends Controller {
     }
 
     public function logout() {
-        Session::flush();
+        Auth::logout();
         return redirect('/login')->with('flash_message_success', 'Logged out Successfully');
     }
 

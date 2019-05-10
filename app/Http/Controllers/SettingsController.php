@@ -9,8 +9,21 @@ use App\Charge;
 use DB;
 use App\Service;
 use Session;
+use Auth;
+use App\User;
 
 class SettingsController extends Controller {
+
+    public function updateProfile(Request $request) {
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            $email = Auth::user()->email;
+            User::where(['email' => $email])->update(['full_name' => $data['fname'], 'contact_adress' => $data['adress'], 'telephone' => $data['tel']]);
+            return redirect('/home')->with('flash_message_success', 'Profile Updated Successfully');
+        } else {
+            return view('client.profile');
+        }
+    }
 
     public function company(Request $request) {
         if (Session::has('adminSession')) {
